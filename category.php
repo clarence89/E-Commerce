@@ -1,30 +1,45 @@
-<?php include "Template/navbar.php"; ?>
+<?php
+ ini_set('display_errors', 1);
+ ini_set('display_startup_errors', 1);
+ error_reporting(E_ALL);
+include "Template/navbar.php"; ?>
 
 <div class="album py-5 bg-light">
     <div class="container">
 
         <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
-            <!-- This is Column Data -->
-            <div class="col">
-                <div class="card shadow-sm">
-                    <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false">
-                        <title>Placeholder</title>
-                        <rect width="100%" height="100%" fill="#55595c" /><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text>
-                    </svg>
+            <?php
+           
+            include 'database.php';
+            if ($_POST['category']) {
 
-                    <div class="card-body">
-                        <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                        <div class="d-flex justify-content-between align-items-center">
-                            <div class="btn-group">
+                $categ = $conn->real_escape_string($_POST['category']);
+                $result = $conn->query("Select * from `products` where `prodcateg` = '$categ' OR `prodname` LIKE '%$categ%'");
+                if ($result->num_rows  > 0) {
+                    while ($row = $result->fetch_assoc()) {
+                        echo '
+                            <div class="col">
+              <div class="card shadow-sm ">
+                <img src="' . $row['prodimage'] . '" class="bd-placeholder-img card-img-top" width="100%" ></img>
+    
+               <div class="card-body">
+               <h3 class="card-title">' . $row['prodname'] . '</h3>
+                 <p class="card-text">' . $row['proddesc'] . '</p>
+                 <div class="d-flex justify-content-between align-items-center">
+                  
+                   <small class="text-muted">' . date("F jS, Y", strtotime($row['dateposted'])) . '</small>
+                  </div>
+               </div>
+              </div>
+          </div>
+                     ';
+                    }
+                }
+            }
 
-                                <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
-                                <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
-                            </div>
-                            <small class="text-muted">9 mins</small>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            ?>
+
+
             <!-- This is Column Data  -->
         </div>
     </div>

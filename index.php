@@ -1,4 +1,5 @@
 <?php include "Template/navbar.php"; ?>
+<div class="mt-1">
 <main>
   <div id="myCarousel" class="carousel slide" data-bs-ride="carousel">
     <ol class="carousel-indicators">
@@ -30,7 +31,6 @@
         <div class="carousel-item">
         <center>
           <img class="bd-placeholder-img" style="height:100%" src="' . $row1['prodimage'] . '">
-           
           </img>
           
           <center>
@@ -40,7 +40,6 @@
               <p style="color:black">' . $row1['proddesc'] . '</p>
             </div>
           </div>
-   
         </div>
       ';
         }
@@ -58,12 +57,21 @@
     </a>
   </div>
 
-  <div class="album py-5 bg-light">
-    <div class="container">
+  <div class="bg-light">
+    <div class="mx-4">
 
 
       <!-- This is Column Data -->
-      <?php
+      <div class="row">
+      <div class="col-3">
+ 
+      <p style="font-weight: 600; color:rgb(176, 46, 37);">About PrinceK</p>
+ 
+      </div>
+     
+
+     <div class="col-9">
+     <?php
       include 'database.php';
       /* $result = $conn->query("SELECT * FROM `products` LIMIT 6");
         if ($result->num_rows  > 0) {
@@ -93,7 +101,7 @@
       $resultcateg = $conn->query("SELECT DISTINCT prodcateg FROM `products`");
       while ($rowcateg = $resultcateg->fetch_assoc()) {
         $category = $rowcateg['prodcateg'];
-        echo '<h1>'.$category.'</h1></br>';
+        echo '<p style="font-size: 24px;font-weight:600;">'.$category.'</p></br>';
         echo '<div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">';
         if (isset($_GET['pageno'])) {
           $pageno = $_GET['pageno'];
@@ -114,12 +122,12 @@
           while ($row = $res_data->fetch_array()) {
             echo '
             <div class="col">
-              <div class="card shadow-sm ">
+              <div class="card border-light">
                 <img src="' . $row['prodimage'] . '" class="bd-placeholder-img card-img-top" width="100%" ></img>
     
                <div class="card-body">
                <h3 class="card-title">' . $row['prodname'] . '</h3>
-                 <p class="card-text">' . $row['proddesc'] . '</p>
+                 <p class="card-text text-center">' . $row['proddesc'] . '</p>
                  <div class="d-flex justify-content-between align-items-center">
                   
                    <small class="text-muted">' . date("F jS, Y", strtotime($row['dateposted'])) . '</small>
@@ -135,12 +143,23 @@
           echo '<div class="col"><h1>No Data</h1></div>';
         }
         echo '</div>';
+        echo '
+        <div class="container ">
+        <form method="POST" action="category.php">
+        <div class="text-right">
+          <button style="color:blue" type="submit" value="'. $category .'" name="category" >See all...</button>
+          </div>
+        </form>
+        </div>';
+       
       }
 
       ?>
+     </div>
+       </div>
 
-      <!-- This is Column Data  -->
-    
+
+    </div>
     <br>
     <ul class="pagination  <?php if ($total_pages <= 1) {
                               echo 'd-none';
@@ -170,5 +189,6 @@
   </div>
 
 </main>
+</div>
 
 <?php include "Template/footer.php"; ?>
