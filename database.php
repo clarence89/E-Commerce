@@ -1,7 +1,7 @@
 <?php
 $host = 'localhost';
-$user = 'root';
-$pass = 112395;
+$user = 'imamlzix_clarence';
+$pass = '89Justletitgo';
 $db = 'ecommercephp';
 try {
     $conn = new mysqli($host, $user, $pass, $db);

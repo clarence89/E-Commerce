@@ -1,6 +1,10 @@
 <?php
 include "database.php";
-// Insert Products
+
+if ($_POST['category']) {
+    header('Location: /E-Commerce/category/'.$_POST['category']);
+  }
+  // Insert Products
 if ($_POST['insertprod']) {
     $prodname = $conn->real_escape_string($_POST['prodname']);
     $proddesc = $conn->real_escape_string($_POST['proddesc']);

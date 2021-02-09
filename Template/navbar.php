@@ -18,11 +18,36 @@
         user-select: none;
     }
 
+    @media (min-width: 576px) {  }
+
+
     @media (min-width: 768px) {
         .bd-placeholder-img-lg {
             font-size: 3.5rem;
         }
     }
+
+
+@media (min-width: 992px) {  }
+
+
+@media (min-width: 1200px) {  }
+
+.card-title > h3{
+         color: rgb(176, 46, 37);
+        
+    }
+@media (min-width: 1400px) { 
+     .card-title > h3{
+         color: rgb(176, 46, 37);
+         font-size: 20px;
+         text-align: center;
+    }
+    .card-text {
+        font-size: 16px
+    }
+ }
+   
 </style>
 
 <link href="carousel.css" rel="stylesheet">
@@ -59,7 +84,7 @@
                         <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
                     </li>
                 </ul>
-                <form action="category.php" method="post" class="d-flex">
+                <form action="/E-Commerce/scripts.php" method="post" class="d-flex">
                     <input class="form-control me-2" type="search" placeholder="Search" name="category" aria-label="Search">
                     <button class="btn btn-outline-success" type="submit">Search</button>
                 </form>
