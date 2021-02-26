@@ -23,8 +23,30 @@ if ($_POST['updateprod']) {
 // Delete Products
 if ($_POST['deleteprod']) {
 }
+// Select User
+if ($_POST['selectuser']) {
+  $username = $conn->real_escape_string($_POST['username']);
+  $password = $conn->real_escape_string($_POST['password']);
+  $query = "SELECT * FROM `users` WHERE `username` = ? AND `password` = ?";
+  $stmt =   $conn->prepare($query);
+  $stmt->bind_param("ss", $username, md5($password));
+  $stmt->execute();
+  $result = $stmt->get_result();
+  $user = $result->fetch_object();
+}
 // Insert Users
 if ($_POST['insertuser']) {
+  $username = $conn->real_escape_string($_POST['username']);
+  $password = $conn->real_escape_string($_POST['password']);
+  $image = $conn->real_escape_string($_POST['image']);
+  $fName = $conn->real_escape_string($_POST['fName']);
+  $mName = $conn->real_escape_string($_POST['mName']);
+  $lName = $conn->real_escape_string($_POST['lName']);
+  $address = $conn->real_escape_string($_POST['address']);
+  $query = "INSERT INTO `products`(username, password, image, fName, mName, lName, address) VALUES (?,?,?,?,?,?,?)";
+  $stmt =   $conn->prepare($query);
+  $stmt->bind_param("sssssss", $username, md5($password),$image,$fName, $mName,$lName,$address);
+  $stmt->execute();
 }
 // Update Users
 if ($_POST['updateuser']) {

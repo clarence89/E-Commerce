@@ -3,5 +3,6 @@ Options +FollowSymLinks
   RewriteEngine on
   RewriteCond %{REQUEST_FILENAME} !-f
   RewriteCond %{REQUEST_FILENAME} !-d
-  RewriteRule ^category/(.*)$ ./category.php?category=$1 
+  RewriteRule ^category/(.*)$ ./category.php?category=$1
+    RewriteRule ^product/(.*)$ ./product.php?id=$1
 </IfModule>

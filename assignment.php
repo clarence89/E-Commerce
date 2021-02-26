@@ -26,19 +26,20 @@
         <td>NAME</td>
         <td>AGE</td>
         </tr>";
-            // output data of each row
-            while ($row = mysqli_fetch_array($sql)) {
-                echo '
+        // output data of each row
+        while ($row = mysqli_fetch_array($sql)) {
+            echo '
                 <tr>
                 <td>' . $row['id'] . '</td>
                 <td>' . $row['name'] . '</td>
                 <td>' . $row['age'] . '</td>
                 </tr>
-                
+
                 ';
-            }
-    } 
+        }
+    }
     echo '</table>';
     ?>
 </body>
+
 </html>

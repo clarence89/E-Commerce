@@ -21,7 +21,7 @@
   bottom: 3rem;
   z-index: 10;
 }
-center{
+center {
   height: 32rem;
 }
 /* Declare heights because of positioning of img element */
@@ -34,7 +34,6 @@ center{
   left: 0;
   height: 32rem;
 }
-
 
 /* MARKETING CONTENT
 -------------------------------------------------- */
@@ -49,11 +48,10 @@ center{
 }
 /* rtl:begin:ignore */
 .marketing .col-lg-4 p {
-  margin-right: .75rem;
-  margin-left: .75rem;
+  margin-right: 0.75rem;
+  margin-left: 0.75rem;
 }
 /* rtl:end:ignore */
-
 
 /* Featurettes
 ------------------------- */
@@ -67,9 +65,8 @@ center{
   font-weight: 300;
   line-height: 1;
   /* rtl:remove */
-  letter-spacing: -.05rem;
+  letter-spacing: -0.05rem;
 }
-
 
 /* RESPONSIVE CSS
 -------------------------------------------------- */

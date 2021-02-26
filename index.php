@@ -1,7 +1,4 @@
 <?php include "Template/navbar.php";
-ini_set('display_errors', 1);
-ini_set('display_startup_errors', 1);
-error_reporting(E_ALL);
 include "database.php";
 
 ?>
@@ -30,31 +27,28 @@ include "database.php";
           </img>
           <div class="container">
             <div class="carousel-caption text-start">
-              <h1>PrinceK's Party Supplies</h1>
-              <p>You can choose different kinds of Party Suplies Here and Order like. Balloons, Confetti, Cakes, and more!!</p>
+              <h1 style="font-family: Lato">PrinceK's Party Supplies</h1>
+              <p style="font-family: Montserrat">You can choose different kinds of Party Suplies Here and Order like. Balloons, Confetti, Cakes, and more!!</p>
             </div>
           </div>
         </div>
 
         <!-- Carousel Item -->
         <?php
-                $result1 = $conn->query("SELECT * FROM products WHERE isfeatured = true");
+        $result1 = $conn->query("SELECT * FROM products WHERE isfeatured = true");
 
         if ($result1->num_rows > 0) {
           while ($row1 = $result1->fetch_assoc()) {
-            echo ' 
+            echo '
            <div class="carousel-item">
            <center>
+           <a href="/E-Commerce/product/'.$row1['id'].'">
              <img class="bd-placeholder-img" style="height:100%" src="' . $row1['prodimagecar'] . '">
+             </a>
              </img>
-             
-             <center>
-             <div class="container">
-               <div class="carousel-caption text-bottom">
-                 <h1 style="color:black">' . $row1['prodname'] . '</h1>
-                 <p style="color:black">' . $row1['proddesc'] . '</p>
-               </div>
-             </div>
+
+
+
            </div>
          ';
           }
@@ -92,14 +86,14 @@ include "database.php";
            <h3 class="card-title">' . $row['prodname'] . '</h3>
              <p class="card-text">' . $row['proddesc'] . '</p>
              <div class="d-flex justify-content-between align-items-center">
-              
+
                <small class="text-muted">' . date("F jS, Y", strtotime($row['dateposted'])) . '</small>
               </div>
            </div>
           </div>
       </div>
-        
-        
+
+
         ';
           }
         } else {
@@ -110,24 +104,24 @@ include "database.php";
         echo '
         <div class="row">
       <div class="d-none d-sm-block col-sm-3 col-md-2 col-lg-2 col-xl-2">
- 
-      <p style="font-weight: 600; color:rgb(176, 46, 37);">About PrinceK</p>
-      <p style="font-weight: 600; color:rgb(176, 46, 37);">Product Categories</p>
+
+      <h1  style="font-family: Lato; font-size:1.2em; font-weight: 600; color:rgb(176, 46, 37);">About PrinceK</h1>
+      <p style="font-family: Lato;font-size:1.2em; font-weight: 600; color:rgb(176, 46, 37);">Product Categories</p>
         <ul style="list-style-type:disc">';
         while ($rowcateg1 = $resultcateg1->fetch_assoc()) {
-          echo '<li><a style="color:black;" href="/E-Commerce/category/' . $rowcateg1['prodcateg'] . '">' . $rowcateg1['prodcateg'] . '</a></li>';
+          echo '<li><a style="font-family: Montserrat;color:black;" href="/E-Commerce/category/' . $rowcateg1['prodcateg'] . '">' . $rowcateg1['prodcateg'] . '</a></li>';
         }
         echo '
         </ul>
       </div>
-     
+
 
      <div class="col-12 col-sm-9 col-md-10 col-lg-10 col-xl-10">
         ';
 
         while ($rowcateg = $resultcateg->fetch_assoc()) {
           $category = $rowcateg['prodcateg'];
-          echo '<p style="font-size: 24px;font-weight:600;">' . $category . '</p></br>';
+          echo '<p style="font-family: Lato; font-size:2em;font-weight:600;">' . $category . '</p></br>';
           echo '<div class="row row-cols-2 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 row-cols-xl-5 g-4">';
           if (isset($_GET['pageno'])) {
             $pageno = $_GET['pageno'];
@@ -147,22 +141,24 @@ include "database.php";
           if ($result->num_rows  > 0) {
             while ($row = $res_data->fetch_array()) {
               echo '
+              <a  href="/E-Commerce/product/' . $row['id'] . '">
             <div class="col">
               <div class="card border-light">
                 <img src="' . $row['prodimage'] . '" class="bd-placeholder-img card-img-top" width="100%" ></img>
-    
+
                <div class="card-body">
-               <div class="card-title"><h3>' . $row['prodname'] . '</h3></div>
-                 <p class="card-text text-center">' . $row['proddesc'] . '</p>
+               <div style="font-family: Lato" class="card-title"><h3>' . $row['prodname'] . '</h3></div>
+                 <p style="font-family: Monthserrat;color:black;"  class="card-text text-center">' . $row['proddesc'] . '</p>
                  <div class="d-flex justify-content-between align-items-center">
-                  
+
                    <small class="text-muted">' . date("F jS, Y", strtotime($row['prod_dateposted'])) . '</small>
                   </div>
                </div>
               </div>
           </div>
-            
-            
+          </a>
+
+
             ';
             }
           } else {
