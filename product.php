@@ -1,7 +1,5 @@
 <?php
 include "Template/navbar.php";
-
-include "database.php";
 ?>
 
 <main>
@@ -24,13 +22,31 @@ include "database.php";
            </h1>
            <h2  class="m-4" style="font-family: Montserrat; font-size:1em;" >' . $user->proddesc . '</h2>
            <h3  class="m-4" style="font-family: Montserrat; font-size:1em;font-weight:700" >P' . $user->prodprice . '</h3>
-            <form method="POST" action="scripts.php">
+            <form method="POST" action="/E-Commerce/scripts.php">
+            <div style="display:none;" class="m-auto input-group mb-3">
+            <span class="input-group-text" id="basic-addon2">ID</span>
+            <input name="id" type="text"  class=" form-control" aria-describedby="basic-addon2" value="' . $user->id . '">
+            </div>
             <div class="m-auto input-group mb-3">
             <span class="input-group-text" id="basic-addon2">Quantity</span>
-  <input type="text"  class=" form-control" aria-describedby="basic-addon2" value="1">
-</div>
+            <input name="quantity" type="text"  class=" form-control" aria-describedby="basic-addon2" value="1">
+            </div>
             </br>
-            <input class=" btn btn-info" type="submit" name="addcart" value="Add to Cart">
+            <div style="display: none;"  class="mb-3">
+                            <input name="urlb" type="text" class="form-control" id="urlb">
+                        </div>
+                        ';
+
+            if (isset($_SESSION['name']) && isset($_SESSION['id'])) {
+                echo '<input class=" btn btn-info" type="submit" name="addcart" value="Add to Cart">';
+            }
+            else{
+
+                echo '<input class=" btn btn-info"   data-bs-toggle="modal" data-bs-target="#exampleModal" href="#"  name="addcart" value="Add to Cart">';
+            }
+
+
+            echo '
             </form>
             </center>
             </div>
